@@ -1,9 +1,11 @@
 import './App.css';
 import React, {useState, createContext} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import mainPage from './routes/Mainpage';
-import loginPage from './routes/loginPage';
-import PrivateCart from './routes/cartPage';
+import NavBar from './NavBar';
+import mainPage from './routes/MainPage';
+import loginPage from './routes/LoginPage';
+import PrivateCart from './routes/PrivateCart';
+import cartPage from './routes/CartPage';
 
 export const authContext = createContext();
 
