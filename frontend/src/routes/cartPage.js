@@ -1,11 +1,11 @@
 import React from 'react'
 
-function cartPage() {
+function CartPage() {
     return (
         <div>
-            
+            The Cart
         </div>
     )
 }
 
-export default cartPage;
+export default CartPage;

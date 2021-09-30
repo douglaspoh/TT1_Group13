@@ -1,6 +1,6 @@
 import React from 'react'
 
-function mainPage() {
+function MainPage() {
     return (
         <div>
             Display products
@@ -8,4 +8,4 @@ function mainPage() {
     )
 }
 
-export default mainPage
+export default MainPage
