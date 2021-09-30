@@ -24,7 +24,7 @@ function Routes() {
           <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/login' component={LoginPage}/>
-            <PrivateCart component={CartPage} />
+            <PrivateCart path='/cart' component={CartPage} />
             <Route path='*' component={() => '404 PAGE NOT FOUND'} />
           </Switch>
         </BrowserRouter>
