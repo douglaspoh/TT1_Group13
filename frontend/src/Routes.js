@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import MainPage from './routes/MainPage';
@@ -18,17 +18,17 @@ function Routes() {
   return (
     <div className="App">
       <authContext.Provider value={auth}>
-      <cartContext.Provider value={cartOperations}>
-        <BrowserRouter>
-          <NavBar/>
-          <Switch>
-            <Route exact path='/' component={MainPage} />
-            <Route path='/login' component={LoginPage}/>
-            <PrivateCart path='/cart' component={CartPage} />
-            <Route path='*' component={() => '404 PAGE NOT FOUND'} />
-          </Switch>
-        </BrowserRouter>
-      </cartContext.Provider>  
+        <cartContext.Provider value={cartOperations}>
+          <BrowserRouter>
+            <NavBar />
+            <Switch>
+              <Route exact path='/' component={MainPage} />
+              <Route path='/login' component={LoginPage} />
+              <PrivateCart path='/cart' component={CartPage} />
+              <Route path='*' component={() => '404 PAGE NOT FOUND'} />
+            </Switch>
+          </BrowserRouter>
+        </cartContext.Provider>
       </authContext.Provider>
     </div>
   );
@@ -52,6 +52,7 @@ function useProvideAuth() {
 
 
 function useCartOperations() {
+<<<<<<< HEAD
   const {products} = data;
   const [cartList,setCartList] = useState([]);
   const [addStatus,setAddStatus] = useState(false);
@@ -59,42 +60,54 @@ function useCartOperations() {
   const firstAdd = (product) => {
     setAddStatus(true)
   };
+=======
+  const auth = useContext(authContext);
+  const { products } = data;
+  const [cartList, setCartList] = useState([]);
+  const [status, setStatus] = useState('');
+  const [totalPrice, setTotalPrice] = useState('');
+>>>>>>> 0b1fc26198b27b9f0b7990a868567c3719823b6c
 
   const onAdd = (product) => {
-    const inCart = cartList.find(item=>item.id===product.id)
-    if(inCart){
+    const inCart = cartList.find(item => item.id === product.id)
+    if (inCart) {
       setCartList(
-      cartList.map((item)=>item.id===product.id?{...inCart,qty:inCart.qty+1}:item
-      ))
+        cartList.map((item) => item.id === product.id ? { ...inCart, qty: inCart.qty + 1 } : item
+        ))
       console.log(cartList)
-    } else{
+    } else {
       setCartList(
-        [...cartList,{...product,qty:1}]
+        [...cartList, { ...product, qty: 1 }]
       )
       console.log(cartList)
     }
   };
 
   const onRemove = (product) => {
-    if(product.qty===1){
+    if (product.qty === 1) {
       setCartList(
-        cartList.filter((item)=>item.id!==product.id)
+        cartList.filter((item) => item.id !== product.id)
       )
-    } else{
+    } else {
       setCartList(
-        cartList.map((item)=>item.id===product.id?{...item,qty:item.qty-1}:item)
+        cartList.map((item) => item.id === product.id ? { ...item, qty: item.qty - 1 } : item)
       )
     }
   }
 
-  const onDelete = (product) =>{
+  const onDelete = (product) => {
     setCartList(
-      cartList.filter((item)=>item.id!==product.id)
+      cartList.filter((item) => item.id !== product.id)
     )
-  } 
+  }
 
-  const onSubmit = (cartList) =>{
+  const onSubmit = () => {
     // submit order
+    console.log("submit order!!")
+    console.log(cartList)
+    console.log(totalPrice)
+
+    setStatus("Purchased");
 
     fetch('http://localhost:3005/order', {
             method: 'POST',
@@ -121,7 +134,7 @@ function useCartOperations() {
         });      
   } 
   
-  return {products, cartList, addStatus, firstAdd, onAdd, onRemove, onDelete};
+  return {products, cartList, addStatus, firstAdd, onAdd, onRemove, onDelete, onSubmit};
 
 }
 
