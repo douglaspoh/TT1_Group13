@@ -13,7 +13,10 @@ const LoginPage =() => {
 
     const login = (e) => {
         e.preventDefault();
-        return;
+        console.log(username + " - " +password)
+        auth.signin(username, password);
+        setUsername('');
+        setPassword('');
         // fetch('http://localhost:3005/login', {
         //     method: 'POST',
         //     headers: { 
