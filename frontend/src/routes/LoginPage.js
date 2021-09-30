@@ -9,6 +9,7 @@ const LoginPage = () => {
     const auth = useContext(authContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userId, setUserId] = useState('');
 
     const history = useHistory();
     const location = useLocation();
@@ -16,18 +17,28 @@ const LoginPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-      };
+    };
+
+   
 
     const login = async (username, password) => {
         try {
             console.log("Logging in");
-          await firebaseauth.signInWithEmailAndPassword(username, password);
-          history.push('/');
+            const res = await firebaseauth.signInWithEmailAndPassword(username, password);
+            // setUserId(data.id);
+            const data = await res.json()
+            console.log(data)
+            setUserId(data.id);
+            auth.signin({ userId, username });
+            // Reset username and password
+            setUsername('');
+            setPassword('');
+            history.push('/');
         } catch (err) {
-          console.error(err);
-          alert(err.message);
+            console.error(err);
+            alert(err.message);
         }
-      };
+    };
 
     return (
         <div className='loginpage'>
