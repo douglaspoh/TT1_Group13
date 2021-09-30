@@ -10,6 +10,7 @@ function Product(props) {
       <div><b>{product.name}</b></div>
       <div>${product.price}</div>
       <button onClick={()=>cartOperations.onAdd(product)}>Add to Cart</button>
+      {cartOperations.addStatus ? <input type='text'></input> : <div><div/>}
     </div>
   );
 }

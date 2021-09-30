@@ -54,8 +54,13 @@ function useProvideAuth() {
 function useCartOperations() {
   const {products} = data;
   const [cartList,setCartList] = useState([]);
+  const [addStatus,setAddStatus] = useState(false);
 
   const onAdd = (product) => {
+    setAddStatus(true)
+  };
+
+  const added = (product) => {
     const inCart = cartList.find(item=>item.id===product.id)
     if(inCart){
       setCartList(
@@ -88,7 +93,7 @@ function useCartOperations() {
     )
   } 
   
-  return {products, cartList, onAdd, onRemove, onDelete};
+  return {products, cartList, addStatus, onAdd, onRemove, onDelete};
 
 }
 
