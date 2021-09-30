@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import MainPage from './routes/MainPage';
@@ -18,17 +18,17 @@ function Routes() {
   return (
     <div className="App">
       <authContext.Provider value={auth}>
-      <cartContext.Provider value={cartOperations}>
-        <BrowserRouter>
-          <NavBar/>
-          <Switch>
-            <Route exact path='/' component={MainPage} />
-            <Route path='/login' component={LoginPage}/>
-            <PrivateCart path='/cart' component={CartPage} />
-            <Route path='*' component={() => '404 PAGE NOT FOUND'} />
-          </Switch>
-        </BrowserRouter>
-      </cartContext.Provider>  
+        <cartContext.Provider value={cartOperations}>
+          <BrowserRouter>
+            <NavBar />
+            <Switch>
+              <Route exact path='/' component={MainPage} />
+              <Route path='/login' component={LoginPage} />
+              <PrivateCart path='/cart' component={CartPage} />
+              <Route path='*' component={() => '404 PAGE NOT FOUND'} />
+            </Switch>
+          </BrowserRouter>
+        </cartContext.Provider>
       </authContext.Provider>
     </div>
   );
@@ -52,71 +52,80 @@ function useProvideAuth() {
 
 
 function useCartOperations() {
-  const {products} = data;
-  const [cartList,setCartList] = useState([]);
+  const auth = useContext(authContext);
+  const { products } = data;
+  const [cartList, setCartList] = useState([]);
+  const [status, setStatus] = useState('');
+  const [totalPrice, setTotalPrice] = useState('');
 
   const onAdd = (product) => {
-    const inCart = cartList.find(item=>item.id===product.id)
-    if(inCart){
+    const inCart = cartList.find(item => item.id === product.id)
+    if (inCart) {
       setCartList(
-      cartList.map((item)=>item.id===product.id?{...inCart,qty:inCart.qty+1}:item
-      ))
+        cartList.map((item) => item.id === product.id ? { ...inCart, qty: inCart.qty + 1 } : item
+        ))
       console.log(cartList)
-    } else{
+    } else {
       setCartList(
-        [...cartList,{...product,qty:1}]
+        [...cartList, { ...product, qty: 1 }]
       )
       console.log(cartList)
     }
   };
 
   const onRemove = (product) => {
-    if(product.qty===1){
+    if (product.qty === 1) {
       setCartList(
-        cartList.filter((item)=>item.id!==product.id)
+        cartList.filter((item) => item.id !== product.id)
       )
-    } else{
+    } else {
       setCartList(
-        cartList.map((item)=>item.id===product.id?{...item,qty:item.qty-1}:item)
+        cartList.map((item) => item.id === product.id ? { ...item, qty: item.qty - 1 } : item)
       )
     }
   }
 
-  const onDelete = (product) =>{
+  const onDelete = (product) => {
     setCartList(
-      cartList.filter((item)=>item.id!==product.id)
+      cartList.filter((item) => item.id !== product.id)
     )
-  } 
+  }
 
-  const onSubmit = (cartList) =>{
+  const onSubmit = () => {
     // submit order
+    console.log("submit order!!")
+    console.log(cartList)
+    console.log(totalPrice)
+
+    setStatus("Purchased");
 
     fetch('http://localhost:3005/order', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-              cartList
-            )
-        })
-        .then(res=>{
-            if(!res.ok){
-                console.log('Error!');
-            }
-            return res.text();
-        })
-        .then(data=>{
-          console.log('success!');
-          // reset cartList
-          setCartList([]);
-        })
-        .catch(err=>{
-            console.log(err)
-        });      
-  } 
-  
-  return {products, cartList, onAdd, onRemove, onDelete};
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {customer_id: auth.user.id, status: status},
+        cartList
+      )
+    })
+      .then(res => {
+        if (!res.ok) {
+          console.log('Error!');
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log('success!');
+        // reset cartList
+        setCartList([]);
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
+
+  return { products, cartList, onAdd, onRemove, onDelete, onSubmit };
 
 }
 
