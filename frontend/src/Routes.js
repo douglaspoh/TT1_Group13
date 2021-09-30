@@ -1,6 +1,6 @@
 import './App.css';
-import React, {useState, createContext} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import React, { useState, createContext } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import MainPage from './routes/MainPage';
 import LoginPage from './routes/LoginPage';
@@ -19,10 +19,10 @@ function Routes() {
         <BrowserRouter>
           {/* <NavBar/> */}
           <Switch>
-            <Route exact path='/' component={MainPage}/>
+            <Route exact path='/' component={MainPage} />
             <Route path='/login' component={LoginPage}/>
-            <PrivateCart component={CartPage}/>
-            <Route path='*' component={()=>'404 PAGE NOT FOUND'}/>
+            <PrivateCart component={CartPage} />
+            <Route path='*' component={() => '404 PAGE NOT FOUND'} />
           </Switch>
         </BrowserRouter>
       </authContext.Provider>
@@ -31,7 +31,7 @@ function Routes() {
 }
 
 function useProvideAuth() {
-  const [user,setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const signin = (cb) => {
     setUser('user');
@@ -43,7 +43,7 @@ function useProvideAuth() {
     cb();
   }
 
-  return {user,signin,signout}
+  return { user, signin, signout }
 }
 
 
