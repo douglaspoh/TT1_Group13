@@ -37,9 +37,17 @@ function Routes() {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
 
-  const signin = (cb) => {
-    setUser('user');
-    cb();
+  const signin = async (username, password) => {
+		const respond = await fetch('', {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+				'Accept': 'application/json',
+			},
+			body: JSON.stringify(username, password),
+		})
+
+		const data = await respond.json();
   }
 
   const signout = (cb) => {
