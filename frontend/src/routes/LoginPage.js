@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { useHistory, useLocation } from 'react-router-dom';
 import { authContext } from '../Routes';
+import app from "../firebase";
+
+const firebaseauth = app.auth();
 
 const LoginPage = () => {
     const auth = useContext(authContext);
-    const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -12,49 +14,24 @@ const LoginPage = () => {
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
 
-    const login = (e) => {
-        e.preventDefault();
-        // console.table();
-        
-        /* fetch('http://localhost:3005/login', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        })
-        .then(res=>{
-            if(!res.ok){
-                console.log('Error!');
-            }
-            return res.text();
-        })
-        .then(data=>{
-            if(data==='Login success'){
-                history.push('/');
-                auth.signin({userId, username, password});                 
-            } else {
-            console.log(data);
-            setUsername('');
-            setPassword('');
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-        });      */
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+      };
 
-        // auth.signin(username);
-        history.push('/');
-        auth.signin({userId, username, password}); 
-        
-    }
+    const login = async (username, password) => {
+        try {
+            console.log("Logging in");
+          await firebaseauth.signInWithEmailAndPassword(username, password);
+          history.push('/');
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
+        }
+      };
 
     return (
         <div className='loginpage'>
-            <form onSubmit={login}>
+            <form onSubmit={handleSubmit}>
                 <div className='formitem'>
                     <label htmlFor='username'>Username:</label>
                     <input type='text' onChange={(e) => { setUsername(e.target.value) }} value={username} name='username' />
@@ -63,7 +40,7 @@ const LoginPage = () => {
                     <label htmlFor='password'>Password:</label>
                     <input type='password' onChange={(e) => { setPassword(e.target.value) }} value={password} name='password' />
                 </div>
-                <button type='submit'>Login</button>
+                <button type='submit' onClick={() => login(username, password)}>Login</button>
             </form>
         </div>
     )
