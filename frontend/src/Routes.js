@@ -89,8 +89,8 @@ function useCartOperations() {
     )
   } 
   
-  return {cartList, onAdd, onRemove, onDelete};
-  
+  return {products, cartList, onAdd, onRemove, onDelete};
+
 }
 
 
