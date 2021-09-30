@@ -9,7 +9,7 @@ const LoginPage =() => {
     
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/private" } };
+    const { from } = location.state || { from: { pathname: "/" } };
 
     const login = (e) => {
         e.preventDefault();
