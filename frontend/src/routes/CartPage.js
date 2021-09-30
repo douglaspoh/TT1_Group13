@@ -25,7 +25,7 @@ function CartPage() {
                 {cartOperations.cartList.length!==0 && <div>Total Price: ${cartOperations.cartList.reduce((a,b)=>a+b.price*b.qty,0)}</div>}
             </div>
 
-            <button onClick={()=>cartOperations.onSubmit(cartOperations.cartList)} className='submitOrder'>Place Oder</button>
+            <button onClick={()=>cartOperations.onSubmit(cartOperations.cartList)} className='submitOrder'>Place Order</button>
         </div>
     )
 }
