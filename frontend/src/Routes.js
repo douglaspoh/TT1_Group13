@@ -73,31 +73,31 @@ function useCartOperations() {
       console.log(cartList)
     }
 
-    fetch('http://localhost:3005/order', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        customer_id: auth.user.id,
-        status: status,
-        totalPrice: totalPrice,
-      },
-        cartList
-      )
-    })
-      .then(res => {
-        if (!res.ok) {
-          console.log('Error!');
-        }
-        return res.text();
-      })
-      .then(data => {
-        console.log('success!');
-      })
-      .catch(err => {
-        console.log(err)
-      });
+  //   fetch('http://localhost:3005/order', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       customer_id: auth.user.id,
+  //       status: status,
+  //       totalPrice: totalPrice,
+  //     },
+  //       cartList
+  //     )
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         console.log('Error!');
+  //       }
+  //       return res.text();
+  //     })
+  //     .then(data => {
+  //       console.log('success!');
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     });
 
   };
 
@@ -112,31 +112,31 @@ function useCartOperations() {
       )
     }
 
-    fetch('http://localhost:3005/order', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        customer_id: auth.user.id,
-        status: status,
-        totalPrice: totalPrice,
-      },
-        cartList
-      )
-    })
-      .then(res => {
-        if (!res.ok) {
-          console.log('Error!');
-        }
-        return res.text();
-      })
-      .then(data => {
-        console.log('success!');
-      })
-      .catch(err => {
-        console.log(err)
-      });
+  //   fetch('http://localhost:3005/order', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       customer_id: auth.user.id,
+  //       status: status,
+  //       totalPrice: totalPrice,
+  //     },
+  //       cartList
+  //     )
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         console.log('Error!');
+  //       }
+  //       return res.text();
+  //     })
+  //     .then(data => {
+  //       console.log('success!');
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     });
   }
 
   const onDelete = (product) => {
@@ -144,31 +144,31 @@ function useCartOperations() {
       cartList.filter((item) => item.id !== product.id)
     )
 
-    fetch('http://localhost:3005/order', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        customer_id: auth.user.id,
-        status: status,
-        totalPrice: totalPrice,
-      },
-        cartList
-      )
-    })
-      .then(res => {
-        if (!res.ok) {
-          console.log('Error!');
-        }
-        return res.text();
-      })
-      .then(data => {
-        console.log('success!');
-      })
-      .catch(err => {
-        console.log(err)
-      });
+  //   fetch('http://localhost:3005/order', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       customer_id: auth.user.id,
+  //       status: status,
+  //       totalPrice: totalPrice,
+  //     },
+  //       cartList
+  //     )
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         console.log('Error!');
+  //       }
+  //       return res.text();
+  //     })
+  //     .then(data => {
+  //       console.log('success!');
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     });
   }
 
   const onSubmit = () => {
@@ -178,30 +178,30 @@ function useCartOperations() {
     console.log(totalPrice)
 
     setStatus("Purchased");
-
-    fetch('http://localhost:3005/order', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-              cartList
-            )
-        })
-        .then(res=>{
-            if(!res.ok){
-                console.log('Error!');
-            }
-            return res.text();
-        })
-        .then(data=>{
-          console.log('success!');
-          // reset cartList
-          setCartList([]);
-        })
-        .catch(err=>{
-            console.log(err)
-        });      
+    setCartList([]);
+    // fetch('http://localhost:3005/order', {
+    //         method: 'POST',
+    //         headers: { 
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(
+    //           cartList
+    //         )
+    //     })
+    //     .then(res=>{
+    //         if(!res.ok){
+    //             console.log('Error!');
+    //         }
+    //         return res.text();
+    //     })
+    //     .then(data=>{
+    //       console.log('success!');
+    //       // reset cartList
+    //       setCartList([]);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //     });      
     
 
 
