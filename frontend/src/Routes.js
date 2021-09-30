@@ -70,7 +70,26 @@ function useCartOperations() {
     }
   };
 
+  const onRemove = (product) => {
+    if(product.qty===1){
+      setCartList(
+        cartList.filter((item)=>item.id!==product.id)
+      )
+    } else{
+      setCartList(
+        cartList.map((item)=>item.id===product.id?{...item,qty:item.qty-1}:item)
+      )
+    }
+  }
 
+  const onDelete = (product) =>{
+    setCartList(
+      cartList.filter((item)=>item.id!==product.id)
+    )
+  } 
+  
+  return {cartList, onAdd, onRemove, onDelete};
+  
 }
 
 
