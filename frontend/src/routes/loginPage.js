@@ -1,11 +1,30 @@
 import React, { useState, useContext } from 'react'
 import {authContext} from '../Routes';
+import axios from "axios";
 
 const LoginPage =() => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     
     const login = (e) => {
+        const userData = {
+            email: username,
+            password: password,
+        };
+
+        axios
+            .post("/logins", userData)
+            .then((response) => {
+                localStorage.setItem(
+                    "AuthToken",
+                    `Bearer ${response.data.token}`
+                );
+                // alert("Successful token:" + response.data.token);
+                alert("Successful login!")
+            })
+            .catch((error) => {
+                alert(error)
+            });
         return;
     }
 
