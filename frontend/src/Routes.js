@@ -2,10 +2,10 @@ import './App.css';
 import React, {useState, createContext} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import NavBar from './NavBar';
-import mainPage from './routes/MainPage';
-import loginPage from './routes/LoginPage';
+import MainPage from './routes/MainPage';
+import LoginPage from './routes/LoginPage';
 import PrivateCart from './routes/PrivateCart';
-import cartPage from './routes/CartPage';
+import CartPage from './routes/CartPage';
 
 export const authContext = createContext();
 
@@ -14,13 +14,14 @@ function Routes() {
 
   return (
     <div className="App">
-      <authContext.Provider value={auth}>
+      <authContext.Provider value={true}>
         <BrowserRouter>
           <NavBar/>
           <Switch>
-            <Route component={mainPage}/>
-            <Route component={loginPage}/>
-            <PrivateCart component={cartPage}/>
+            <Route component={MainPage}/>
+            <Route component={LoginPage}/>
+            <PrivateCart component={CartPage}/>
+            <Route path='*' component={()=>'404 PAGE NOT FOUND'}/>
           </Switch>
         </BrowserRouter>
       </authContext.Provider>
