@@ -55,13 +55,9 @@ function useCartOperations() {
   const auth = useContext(authContext);
   const {products} = data;
   const [cartList,setCartList] = useState([]);
-  const [addStatus,setAddStatus] = useState(false);
   const [status,setStatus] = useState("Pending");
   const [totalPrice, setTotalPrice] = useState('');
 
-  const firstAdd = (product) => {
-    setAddStatus(true)
-  };
 
   const onAdd = (product) => {
     const inCart = cartList.find(item => item.id === product.id)
@@ -76,7 +72,6 @@ function useCartOperations() {
       )
       console.log(cartList)
     }
-    setAddStatus(false)
   };
 
   const onRemove = (product) => {
@@ -133,7 +128,7 @@ function useCartOperations() {
 
   } 
   
-  return {products, cartList, addStatus, firstAdd, onAdd, onRemove, onDelete, onSubmit};
+  return {products, cartList, onAdd, onRemove, onDelete, onSubmit};
 
 }
 
