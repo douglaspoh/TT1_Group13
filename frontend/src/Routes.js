@@ -24,7 +24,12 @@ function Routes() {
           <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/login' component={LoginPage}/>
+<<<<<<< HEAD
             <PrivateCart path='/cart' component={CartPage} />
+=======
+            <PrivateCart path='/private' component={CartPage} />
+            <Route path='/cart' component={CartPage}/>
+>>>>>>> d9464b12b816ca47db1f5a291f2da8633a690331
             <Route path='*' component={() => '404 PAGE NOT FOUND'} />
           </Switch>
         </BrowserRouter>
@@ -37,17 +42,9 @@ function Routes() {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
 
-  const signin = async (username, password) => {
-		const respond = await fetch('', {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-				'Accept': 'application/json',
-			},
-			body: JSON.stringify(username, password),
-		})
-
-		const data = await respond.json();
+  const signin = (userDetails) => {
+    console.log(userDetails)
+    setUser(userDetails);
   }
 
   const signout = (cb) => {
