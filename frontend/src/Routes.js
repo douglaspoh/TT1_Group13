@@ -3,7 +3,7 @@ import React, {useState, createContext} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import mainPage from './routes/Mainpage';
 import loginPage from './routes/loginPage';
-import cartPage from './routes/cartPage';
+import PrivateCart from './routes/cartPage';
 
 export const authContext = createContext();
 
