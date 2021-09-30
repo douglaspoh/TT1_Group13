@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import {Route,Redirect} from 'react-router-dom';
-import {authContext} from './Routes';
+import {authContext} from '../Routes';
 
 function PrivateRoute({component:CartPage, ...rest}) {
     const auth = useContext(authContext);
@@ -9,6 +9,7 @@ function PrivateRoute({component:CartPage, ...rest}) {
             render = {routeProps => auth.user ? <CartPage {...routeProps}/>
                                          : <Redirect to = '/login'/>} 
         />
+        // <></>
     )
 }
 

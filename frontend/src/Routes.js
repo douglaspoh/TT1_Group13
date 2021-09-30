@@ -20,7 +20,7 @@ function Routes() {
         <BrowserRouter>
           {/* <NavBar/> */}
           <Switch>
-            <Route exact path='/' component={mainPage}/>
+            <Route exact path='/' component={MainPage}/>
             <Route path='/login' component={LoginPage}/>
             <PrivateCart component={CartPage}/>
             <Route path='*' component={()=>'404 PAGE NOT FOUND'}/>
