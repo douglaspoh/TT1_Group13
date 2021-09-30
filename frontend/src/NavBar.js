@@ -5,7 +5,7 @@ function NavBar() {
 
     return (
         <div className='navbar'>
-            <div className='navtitle'>The Best Digital MarketPlace</div>
+            <div className='navtitle'>Seeder.com</div>
             <nav className='navright'>
                 <NavLink to='/' exact={true} className='navitem' activeStyle={{fontWeight:'bold',color:'red'}} style={{textDecoration:'none'}}>Home</NavLink>
                 <NavLink to='/login' className='navitem' activeStyle={{fontWeight:'bold',color:'red'}} style={{textDecoration:'none'}}>Login</NavLink>

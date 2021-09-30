@@ -1,11 +1,46 @@
 import React, {useState} from 'react'
+import {useHistory, useLocation} from 'react-router-dom';
+import { authContext } from '../Routes';
 
 const LoginPage =() => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/private" } };
+
     const login = (e) => {
+        e.preventDefault();
         return;
+        // fetch('http://localhost:3005/login', {
+        //     method: 'POST',
+        //     headers: { 
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         username: username,
+        //         password: password
+        //     })
+        // })
+        // .then(res=>{
+        //     if(!res.ok){
+        //         console.log('Error!');
+        //     }
+        //     return res.text();
+        // })
+        // .then(data=>{
+        //     if(data==='Login success'){
+        //         auth.signin(()=>history.replace(from));                
+        //     } else {
+        //     console.log(data);
+        //     setUsername('');
+        //     setPassword('');
+        //     }
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // });      
     }
 
     return (
