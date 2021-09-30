@@ -56,11 +56,11 @@ function useCartOperations() {
   const [cartList,setCartList] = useState([]);
   const [addStatus,setAddStatus] = useState(false);
 
-  const onAdd = (product) => {
+  const firstAdd = (product) => {
     setAddStatus(true)
   };
 
-  const added = (product) => {
+  const onAdd = (product) => {
     const inCart = cartList.find(item=>item.id===product.id)
     if(inCart){
       setCartList(
@@ -121,7 +121,7 @@ function useCartOperations() {
         });      
   } 
   
-  return {products, cartList, addStatus, onAdd, onRemove, onDelete};
+  return {products, cartList, addStatus, firstAdd, onAdd, onRemove, onDelete};
 
 }
 

@@ -9,10 +9,14 @@ function Product(props) {
     <div>
       <div><b>{product.name}</b></div>
       <div>${product.price}</div>
-      <button onClick={()=>cartOperations.onAdd(product)}>Add to Cart</button>
-      {cartOperations.addStatus ? <input type='text'></input> : <div><div/>}
+      <button onClick={()=>cartOperations.firstAdd(product)}>Add to Cart</button>
+      {cartOperations.addStatus ? (<div>
+                                   <input type='text'></input> <button onClick={()=>cartOperations.onAdd(product)}></button>
+                                   </div>) 
+                                : (<div></div>)
+      }
     </div>
   );
 }
 
-export default Product
+export default Product;
