@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import {Route,Redirect} from 'react-router-dom';
 import {authContext} from './Routes';
 
-function PrivateRoute({component:CartPage, ...rest}) {
+function PrivateCart({component:CartPage, ...rest}) {
     const auth = useContext(authContext);
     return (
         <Route {...rest}
@@ -12,4 +12,4 @@ function PrivateRoute({component:CartPage, ...rest}) {
     )
 }
 
-export default PrivateRoute;
+export default PrivateCart;

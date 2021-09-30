@@ -4,7 +4,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import MainPage from './routes/MainPage';
 import LoginPage from './routes/LoginPage';
-import PrivateCart from './routes/PrivateCart';
 import CartPage from './routes/CartPage';
 
 export const authContext = createContext();
@@ -18,9 +17,9 @@ function Routes() {
         <BrowserRouter>
           <NavBar/>
           <Switch>
-            <Route component={MainPage}/>
-            <Route component={LoginPage}/>
-            <PrivateCart component={CartPage}/>
+            <Route exact path='/' component={MainPage}/>
+            <Route path='/login' component={LoginPage}/>
+            <Route path='/cart' component={CartPage}/>
             <Route path='*' component={()=>'404 PAGE NOT FOUND'}/>
           </Switch>
         </BrowserRouter>
