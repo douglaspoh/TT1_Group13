@@ -77,6 +77,33 @@ function useCartOperations() {
       console.log(cartList)
     }
     setAddStatus(false)
+
+    fetch('http://localhost:3005/order', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        customer_id: auth.user.id,
+        status: status,
+        totalPrice: totalPrice,
+      },
+        cartList
+      )
+    })
+      .then(res => {
+        if (!res.ok) {
+          console.log('Error!');
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log('success!');
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
   };
 
   const onRemove = (product) => {
@@ -89,12 +116,64 @@ function useCartOperations() {
         cartList.map((item) => item.id === product.id ? { ...item, qty: item.qty - 1 } : item)
       )
     }
+
+    fetch('http://localhost:3005/order', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        customer_id: auth.user.id,
+        status: status,
+        totalPrice: totalPrice,
+      },
+        cartList
+      )
+    })
+      .then(res => {
+        if (!res.ok) {
+          console.log('Error!');
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log('success!');
+      })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   const onDelete = (product) => {
     setCartList(
       cartList.filter((item) => item.id !== product.id)
     )
+
+    fetch('http://localhost:3005/order', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        customer_id: auth.user.id,
+        status: status,
+        totalPrice: totalPrice,
+      },
+        cartList
+      )
+    })
+      .then(res => {
+        if (!res.ok) {
+          console.log('Error!');
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log('success!');
+      })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   const onSubmit = () => {
