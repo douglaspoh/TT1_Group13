@@ -52,15 +52,28 @@ function useProvideAuth() {
 
 
 function useCartOperations() {
+<<<<<<< HEAD
   const {products} = data;
   const [cartList,setCartList] = useState([]);
   const [addStatus,setAddStatus] = useState(false);
   const [totalPrice, setTotalPrice] = useState('');
   const [status, setStatus] = useState('');
+=======
+  const auth = useContext(authContext);
+  const {products} = data;
+  const [cartList,setCartList] = useState([]);
+  const [addStatus,setAddStatus] = useState(false);
+  const [status,setStatus] = useState("Pending");
+  const [totalPrice, setTotalPrice] = useState('');
+>>>>>>> 91ec37a17dbe9aad7e4de9079a53da677600403e
 
   const firstAdd = (product) => {
     setAddStatus(true)
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 91ec37a17dbe9aad7e4de9079a53da677600403e
 
   const onAdd = (product) => {
     const inCart = cartList.find(item => item.id === product.id)
