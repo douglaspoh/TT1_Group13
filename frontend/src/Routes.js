@@ -15,7 +15,7 @@ function Routes() {
 
   return (
     <div className="App">
-      <authContext.Provider value={true}>
+      <authContext.Provider value={auth}>
         <BrowserRouter>
           <NavBar/>
           <Switch>
