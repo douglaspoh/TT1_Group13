@@ -4,7 +4,7 @@ const LoginPage =() => {
     const [user, setUser] = useState({id:"", username:"", password:""});
 
     return (
-        <div>
+        <div className='loginpage'>
                 <label>Username</label>
                 <input type="text">
 

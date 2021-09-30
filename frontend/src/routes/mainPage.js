@@ -2,8 +2,8 @@ import React from 'react'
 
 function MainPage() {
     return (
-        <div>
-            Display products
+        <div className='mainpage'>
+            This is main page.
         </div>
     )
 }

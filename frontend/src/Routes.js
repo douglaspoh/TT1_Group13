@@ -17,7 +17,7 @@ function Routes() {
     <div className="App">
       <authContext.Provider value={true}>
         <BrowserRouter>
-          {/* <NavBar/> */}
+          <NavBar/>
           <Switch>
             <Route exact path='/' component={MainPage}/>
             <Route path='/login' component={LoginPage}/>
