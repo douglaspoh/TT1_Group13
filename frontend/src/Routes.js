@@ -92,6 +92,34 @@ function useCartOperations() {
       cartList.filter((item)=>item.id!==product.id)
     )
   } 
+
+  const onSubmit = (cartList) =>{
+    // submit order
+
+    fetch('http://localhost:3005/order', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+              cartList
+            )
+        })
+        .then(res=>{
+            if(!res.ok){
+                console.log('Error!');
+            }
+            return res.text();
+        })
+        .then(data=>{
+          console.log('success!');
+          // reset cartList
+          setCartList([]);
+        })
+        .catch(err=>{
+            console.log(err)
+        });      
+  } 
   
   return {products, cartList, addStatus, onAdd, onRemove, onDelete};
 
