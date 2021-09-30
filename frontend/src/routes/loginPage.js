@@ -1,27 +1,25 @@
 import React, { useState, useContext } from 'react'
 import {authContext} from '../Routes';
 
-const LoginPage = () => {
-    const auth = useContext(authContext);
-    const [user, setUser] = useState({ username: "", password: "" });
-
-    const onSubmit =(e) =>{
-        e.preventDefault();
-        console.log(user)
-
-        setUser({ username:"",password:"" });
+const LoginPage =() => {
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
+    
+    const login = (e) => {
+        return;
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label>Username</label>
-                <input type="text" value={user.username} onChange={(e)=>setUser({...user, username:e.target.value})}/>
-
-                <label>Password</label>
-                <input type="text" value={user.password} onChange={(e)=>setUser({...user, password:e.target.value})}/>
-
-                <button type="submit">Login</button>
+        <div className='loginpage'>
+            <form onSubmit={login}>
+            <div className='formitem'>
+                <label htmlFor='username'>Username:</label>
+                <input type='text' onChange={(e)=>{setUsername(e.target.value)}} value={username} name='username'/>
+            </div>
+            <div className='formitem'>
+                <label htmlFor='password'>Password:</label>
+                <input type='text' onChange={(e)=>{setPassword(e.target.value)}} value={password} name='password'/>
+            </div>
             </form>
         </div>
     )

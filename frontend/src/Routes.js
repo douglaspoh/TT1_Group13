@@ -15,9 +15,9 @@ function Routes() {
 
   return (
     <div className="App">
-      <authContext.Provider value={true}>
+      <authContext.Provider value={auth}>
         <BrowserRouter>
-          {/* <NavBar/> */}
+          <NavBar/>
           <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/login' component={LoginPage}/>
