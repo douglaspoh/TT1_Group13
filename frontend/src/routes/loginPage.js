@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import React, {useState,useContext} from 'react'
 import {useHistory, useLocation} from 'react-router-dom';
 import { authContext } from '../Routes';
-=======
-import React, { useState, useContext } from 'react'
-import {authContext} from '../Routes';
->>>>>>> 2857ac3ad9eacafa977a633a982dcb36da668725
 
 const LoginPage =() => {
     const auth = useContext(authContext);
