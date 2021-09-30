@@ -2,9 +2,9 @@ import './App.css';
 import React, { useState, createContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
-import MainPage from './routes/MainPage';
-import LoginPage from './routes/LoginPage';
-import CartPage from './routes/CartPage';
+import MainPage from './routes/mainPage';
+import LoginPage from './routes/loginPage';
+import CartPage from './routes/cartPage';
 import PrivateCart from './routes/PrivateCart'
 
 
