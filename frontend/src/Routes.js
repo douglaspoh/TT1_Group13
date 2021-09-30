@@ -7,6 +7,8 @@ import LoginPage from './routes/LoginPage';
 import PrivateCart from './routes/PrivateCart';
 import CartPage from './routes/CartPage';
 
+
+
 export const authContext = createContext();
 
 function Routes() {
@@ -16,10 +18,10 @@ function Routes() {
     <div className="App">
       <authContext.Provider value={true}>
         <BrowserRouter>
-          <NavBar/>
+          {/* <NavBar/> */}
           <Switch>
-            <Route component={MainPage}/>
-            <Route component={LoginPage}/>
+            <Route exact path='/' component={mainPage}/>
+            <Route path='/login' component={LoginPage}/>
             <PrivateCart component={CartPage}/>
             <Route path='*' component={()=>'404 PAGE NOT FOUND'}/>
           </Switch>

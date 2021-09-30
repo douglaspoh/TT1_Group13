@@ -1,9 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function LoginPage() {
+const LoginPage =() => {
+    const [user, setUser] = useState({id:"", username:"", password:""});
+
     return (
-        <div className='loginpage'>
-            
+        <div>
+                <label>Username</label>
+                <input type="text">
+
+                </input>
+                <label>Password</label>
+                <input type="text">
+
+                </input>
+                <button type="submit">Login</button>
+
         </div>
     )
 }
