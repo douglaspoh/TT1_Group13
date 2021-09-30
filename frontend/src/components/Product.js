@@ -11,7 +11,7 @@ function Product(props) {
       <div>${product.price}</div>
       <button onClick={()=>cartOperations.firstAdd(product)}>Add to Cart</button>
       {cartOperations.addStatus ? (<div>
-                                   <input type='text'></input> <button onClick={()=>cartOperations.onAdd(product)}></button>
+                                   <input type='text' placeholder='Enter quantity'></input> <button onClick={()=>cartOperations.onAdd(product)}>Confirm</button>
                                    </div>) 
                                 : (<div></div>)
       }

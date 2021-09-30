@@ -52,21 +52,15 @@ function useProvideAuth() {
 
 
 function useCartOperations() {
-<<<<<<< HEAD
   const {products} = data;
   const [cartList,setCartList] = useState([]);
   const [addStatus,setAddStatus] = useState(false);
+  const [totalPrice, setTotalPrice] = useState('');
+  const [status, setStatus] = useState('');
 
   const firstAdd = (product) => {
     setAddStatus(true)
   };
-=======
-  const auth = useContext(authContext);
-  const { products } = data;
-  const [cartList, setCartList] = useState([]);
-  const [status, setStatus] = useState('');
-  const [totalPrice, setTotalPrice] = useState('');
->>>>>>> 0b1fc26198b27b9f0b7990a868567c3719823b6c
 
   const onAdd = (product) => {
     const inCart = cartList.find(item => item.id === product.id)
@@ -81,6 +75,7 @@ function useCartOperations() {
       )
       console.log(cartList)
     }
+    setAddStatus(false)
   };
 
   const onRemove = (product) => {
@@ -132,6 +127,9 @@ function useCartOperations() {
         .catch(err=>{
             console.log(err)
         });      
+    
+
+
   } 
   
   return {products, cartList, addStatus, firstAdd, onAdd, onRemove, onDelete, onSubmit};
